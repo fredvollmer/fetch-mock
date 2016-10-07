@@ -20,11 +20,18 @@ function getHeaderMatcher (expectedHeaders) {
 
 function normalizeRequest (url, options) {
     if (typeof url === 'string') {
+			concole.log("we've got a string");
+			concole.log("url: " + url, method: options && options.method || 'GET');
         return {
             url: url,
             method: options && options.method || 'GET'
         };
     } else {
+			console.log("It's a req object");
+			console.log({
+					url: url.url,
+					method: url.method
+			});
         return {
             url: url.url,
             method: url.method
