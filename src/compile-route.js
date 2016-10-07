@@ -18,7 +18,21 @@ function getHeaderMatcher (expectedHeaders) {
 	}
 }
 
-function normalizeRequest (url, options, Request) {
+function normalizeRequest (url, options) {
+    if (typeof url === 'string') {
+        return {
+            url: url,
+            method: options && options.method || 'GET'
+        };
+    } else {
+        return {
+            url: url.url,
+            method: url.method
+        };
+    }
+}
+
+/*function normalizeRequest (url, options, Request) {
 	if (Request.prototype.isPrototypeOf(url)) {
 		return {
 			url: url.url,
@@ -36,7 +50,7 @@ function normalizeRequest (url, options, Request) {
 			headers: options && options.headers
 		};
 	}
-}
+}*/
 
 module.exports = function (route, Request) {
 	route = Object.assign({}, route);
